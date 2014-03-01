@@ -2,12 +2,13 @@ package com.houseornohouse;
 
 public class CityPrice {
 	private String city;
-
+	private String province;
 	private Integer price;
 	
-	CityPrice(String c, Integer p)
+	CityPrice(String c, String prov, Integer p)
 	{
 		city = c;
+		province = prov;
 		price = p;
 	}
 
@@ -26,4 +27,13 @@ public class CityPrice {
 	public void setPrice(Integer price) {
 		this.price = price;
 	}
+
+	public String getProvince() {
+		return province;
+	}
+
+	public void setProvince(String province) {
+		this.province = province;
+	}
+	
 }
