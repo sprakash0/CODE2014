@@ -33,6 +33,7 @@ public class DatabaseManager {
 		consulateHelper.close();
 	}
 	
+	// TODO: check for nulls
 	public void insertConsulate(Consulate ins) {
 	    ContentValues values = new ContentValues();
 	    values.put(ConsulateDBHelper.KEY_COUNTRY, ins.getCountry());
