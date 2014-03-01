@@ -52,7 +52,7 @@
 
         <uses-library android:name="com.google.android.maps" />
 
-        <activity
+        <activity android:theme="@style/Theme.AppCompat.Light"
             android:name="com.example.theplaceisright.CountryQuery"
             android:label="@string/title_activity_country_query" >
         </activity>
