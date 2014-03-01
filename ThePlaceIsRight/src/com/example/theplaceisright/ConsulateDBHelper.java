@@ -11,6 +11,7 @@ class ConsulateDBHelper extends SQLiteOpenHelper {
     static final String DICTIONARY_TABLE_NAME = "consulate";
     static final String KEY_COUNTRY = "Country";
     static final String KEY_OFFICE = "Office";
+    static final String VALUE_CODE = "Code";
 	static final String VALUE_PRIMARY = "Primary";
 	static final String VALUE_PASSPORT = "Passport";
     static final String VALUE_CITY = "City";
@@ -27,6 +28,7 @@ class ConsulateDBHelper extends SQLiteOpenHelper {
                 "CREATE TABLE " + DICTIONARY_TABLE_NAME + " (" +
                 KEY_COUNTRY + " TEXT NOT NULL," +
                 KEY_OFFICE + " INTEGER NOT NULL, " +
+                VALUE_CODE + " TEXT NOT NULL," +
                 VALUE_PRIMARY + " INTEGER NOT NULL, " +
                 VALUE_PASSPORT + " INTEGER NOT NULL, " +
                 VALUE_CITY + " TEXT NOT NULL," +

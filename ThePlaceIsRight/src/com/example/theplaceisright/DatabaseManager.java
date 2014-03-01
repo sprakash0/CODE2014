@@ -12,20 +12,25 @@ import android.database.sqlite.SQLiteDatabase;
 public class DatabaseManager {
 	// TODO: add more databases
 	private SQLiteDatabase consulateDB;
-	private ConsulateDBHelper dbHelper;
+	private ConsulateDBHelper consulateHelper;
+	
+	private SQLiteDatabase advisoryDB;
+	private AdvisoryDBHelper advisoryHelper;
 
 	public DatabaseManager(Context context) {
-		dbHelper = new ConsulateDBHelper(context);
+		consulateHelper = new ConsulateDBHelper(context);
+		advisoryHelper = new AdvisoryDBHelper(context);
 		open();
 	}
 
 	// TODO: add more database helpers
 	private void open() throws SQLException {
-		consulateDB = dbHelper.getWritableDatabase();
+		consulateDB = consulateHelper.getWritableDatabase();
+		advisoryDB = advisoryHelper.getWritableDatabase();
 	}
 
 	public void close() {
-		dbHelper.close();
+		consulateHelper.close();
 	}
 	
 	public void insertConsulate(Consulate ins) {
@@ -54,13 +59,21 @@ public class DatabaseManager {
 		
 		ArrayList<Consulate> cons = new ArrayList<Consulate>();
 		
-		while (!c.isAfterLast())
+		if (!c.moveToFirst()) return cons;
+		do
 		{
 			Consulate curr = new Consulate();
-			curr.setCountry(country);
 			curr.setOfficeID(cons.size());
 			
-			int idx = c.getColumnIndex(ConsulateDBHelper.VALUE_PRIMARY);
+			int idx = c.getColumnIndex(ConsulateDBHelper.KEY_COUNTRY);
+			if (idx >= 0)
+				curr.setCountry(c.getString(idx));
+
+			idx = c.getColumnIndex(ConsulateDBHelper.VALUE_CODE);
+			if (idx >= 0)
+				curr.setCountryCode(c.getString(idx));
+			
+			idx = c.getColumnIndex(ConsulateDBHelper.VALUE_PRIMARY);
 			if (idx >= 0)
 				curr.setIsPrimary(c.getInt(idx) == 1 ? true : false);
 
@@ -109,10 +122,39 @@ public class DatabaseManager {
 				curr.setEmail(c.getString(idx));
 
 			cons.add(curr);
-		}
+		} while (c.moveToNext());
 		c.close();
 		
 		return cons;
 	}
 
+	public Advisory getAdvisory(String country) {
+		Cursor c = advisoryDB.rawQuery("SELECT * FROM " 
+				+ AdvisoryDBHelper.DICTIONARY_TABLE_NAME 
+				+ " WHERE UPPER(" + AdvisoryDBHelper.KEY_COUNTRY 
+				+ ") = '" + country.trim().toUpperCase() + "'", null);
+		
+		if (!c.moveToFirst()) return null;
+		
+		Advisory curr = new Advisory();
+
+		int idx = c.getColumnIndex(AdvisoryDBHelper.KEY_COUNTRY);
+		if (idx >= 0)
+			curr.setCountry(c.getString(idx));
+		
+		idx = c.getColumnIndex(ConsulateDBHelper.VALUE_CODE);
+		if (idx >= 0)
+			curr.setCountryCode(c.getString(idx));
+
+		idx = c.getColumnIndex(AdvisoryDBHelper.VALUE_DATE);
+		if (idx >= 0)
+			curr.setDate(c.getString(idx));
+
+		idx = c.getColumnIndex(AdvisoryDBHelper.VALUE_TEXT);
+		if (idx >= 0)
+			curr.setText(c.getString(idx));
+		
+		return curr;
+
+	}
 }

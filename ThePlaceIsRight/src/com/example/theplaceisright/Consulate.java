@@ -2,6 +2,13 @@ package com.example.theplaceisright;
 
 public class Consulate {
 	private String country;
+	public String getCountryCode() {
+		return countryCode;
+	}
+	public void setCountryCode(String countryCode) {
+		this.countryCode = countryCode;
+	}
+	private String countryCode;
 	private Integer officeID;
 	private String city;
 	private String type;
