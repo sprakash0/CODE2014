@@ -17,7 +17,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
-import com.example.myfirstapp.HTMLGetter;
+
 
 import android.util.Log;
 
@@ -33,22 +33,25 @@ public class ContinentHTMLParser {
 		url = str;
 	}
 	
-	public ArrayList<ContinentCountry> parse(){
-		ArrayList<ContinentCountry> array = new ArrayList<ContinentCountry>();
-		
-		HTMLGetter getter = new HTMLGetter();
-		String resString = getter.doInBackground(url);
-		if (resString == null) return array;
-		
-		Document doc = Jsoup.parse(resString);
-		
-		Element content = doc.getElementById("pre");
-		String text = content.toString();
-		
-		System.out.println(text);
-		
-		return array;
+	public void run(){
+		new HTMLGetter().execute(url);
+	}
 	
+	public static ArrayList<ContinentCountry> parse(String str){
+		ArrayList<ContinentCountry> array = new ArrayList<ContinentCountry>();
+		Document doc = Jsoup.parse(str);
+		Element content = doc.getElementById("pre");
+		String[] text = content.toString().split("\n");
+		
+		for (int i = 0; i < text.length; i++)
+		{
+			String[] country = text[i].split("\\s+");
+			//String c2 = 
+			
+			//ContinentCountry curr = new ContinentCountry();
+			
+		}		
+		return array;
 	}
 
 }
