@@ -2,7 +2,9 @@ package com.example.theplaceisright;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
+import android.view.View;
 
 public class MainActivity extends Activity {
 
@@ -19,4 +21,16 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
+	// Called when the user clicks the search button
+	public void search(View view) {
+	    // Do something in response to button
+		Intent intent = new Intent(this, MapInformationActivity.class);
+		startActivity(intent);
+	}
+	
+	public void changeLocation(View view) {
+	    // Do something in response to button
+		Intent intent = new Intent(this, CountryQuery.class);
+		startActivity(intent);
+	}
 }

@@ -5,6 +5,9 @@
     <string name="action_settings">Settings</string>
     <string name="consulate">Consulate</string>
     <string name="title_activity_map_information">MapInformationActivity</string>
+    <string name="button_search">Search</string>
+    <string name="title_activity_country_query">Find Nearest</string>
+     <string name="button_changelocation">Change Location</string>
     <string name="hello_world">Hello world!</string>
 
 </resources>
