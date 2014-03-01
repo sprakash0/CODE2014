@@ -9,12 +9,12 @@
 *.class
 
 # Generated files
-bin/
-gen/
+HouseOrNoHouse/bin/
+HouseOrNoHouse/gen/
 
 # Gradle files
 .gradle/
-build/
+HouseOrNoHouse/build/
 
 # Local configuration file (sdk path, etc)
 local.properties
