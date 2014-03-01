@@ -11,10 +11,13 @@
 # Generated files
 HouseOrNoHouse/bin/
 HouseOrNoHouse/gen/
+ThePlaceIsRight/bin/
+ThePlaceIsRight/gen/
 
 # Gradle files
 .gradle/
 HouseOrNoHouse/build/
+ThePlaceIsRight/build/
 
 # Local configuration file (sdk path, etc)
 local.properties
