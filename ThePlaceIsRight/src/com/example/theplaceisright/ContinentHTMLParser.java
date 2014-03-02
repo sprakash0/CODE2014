@@ -45,10 +45,15 @@ public class ContinentHTMLParser {
 		
 		for (int i = 0; i < text.length; i++)
 		{
-			String[] country = text[i].split("\\s+");
-			//String c2 = 
 			
-			//ContinentCountry curr = new ContinentCountry();
+			String[] country = text[i].split("\\s+");
+			String continent = country[0]; 
+			String code2 = country[1];
+			String code3 = country[2];
+			
+			ContinentCountry curr = new ContinentCountry(code2, continent, code3);
+			
+			array.add(curr);
 			
 		}		
 		return array;
