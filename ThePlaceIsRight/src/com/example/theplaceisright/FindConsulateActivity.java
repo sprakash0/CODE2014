@@ -24,13 +24,13 @@ public class FindConsulateActivity extends Activity {
 	 private Spinner dynamicColorSpinner2;
 	 private TextView dynamicColorLabel2;
 	 private static ArrayList<String> options2;
-	 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_find_consulate);
-		addToDropDownContinent(ContinentCountry.continentNames);
-	}
+//	 
+//	@Override
+//	protected void onCreate(Bundle savedInstanceState) {
+//		super.onCreate(savedInstanceState);
+//		setContentView(R.layout.activity_find_consulate);
+//		addToDropDownContinent(ContinentCountry.continentNames);
+//	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -49,33 +49,11 @@ public class FindConsulateActivity extends Activity {
 		//Countries
 		options2 = new ArrayList<String>();
 		dynamicColorSpinner2 = (Spinner) findViewById(R.id.country_spinner);
-		dynamicColorLabel2 = (TextView) findViewById(R.id.textView1);
+		dynamicColorLabel2 = (TextView) findViewById(R.id.textView2);
 		options2.add("Black");
 		ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, options2);
 		dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		dynamicColorSpinner2.setAdapter(dataAdapter2);
-		
-//		ArrayList<String> test = new ArrayList<String>();
-//		test.add("Black");
-//		test.add("Blak");
-//		test.add("Back");
-//		test.add("Bck");
-//		test.add("Blck");
-//		test.add("lck");
-//		test.add("lack");
-//		
-//		addToDropDownContinent(test);
-//		
-//		ArrayList<String> test2 = new ArrayList<String>();
-//		test2.add("Blk");
-//		test2.add("Bl");
-//		test2.add("B");
-//		test2.add("Bck");
-//		test2.add("f");
-//		test2.add("lck");
-//		test2.add("la");
-//		
-//		addToDropDownCountry(test2);
 		
 		return true;
 	}
