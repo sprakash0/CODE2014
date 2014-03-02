@@ -35,6 +35,7 @@ public class FindConsulateActivity extends Activity {
 	 
 	 private String country;
 	 private String continent;
+	 private int prevIdx = -1;
 	 
 	 
 	@Override
@@ -130,6 +131,8 @@ private void setContinentListener() {
 		@Override
 		public void onItemSelected(AdapterView<?> parent, View view, int pos,
 				long id) {
+			if (prevIdx >= 0 && prevIdx == pos) return;
+			prevIdx = pos;
 			
 			continent = parent.getItemAtPosition(pos).toString();
 			//dynamicColorLabel2.setText(continent);
