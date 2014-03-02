@@ -44,15 +44,19 @@ public class MapInformationActivity extends Activity {
         	Intent intent = getIntent();
         	double latitude = intent.getDoubleExtra(MainActivity.LATITUDE, 0);
         	double longitude = intent.getDoubleExtra(MainActivity.LONGITUDE, 0);
-        	
+        	LatLng consulateLL = new LatLng(latitude, longitude);
+
+        	map.addMarker(new MarkerOptions().position(consulateLL));
         	// Set markers at consulate locations
         	
         	// If latitude/longitude is valid, add marker to map
-        	List<String> consulateList = new ArrayList<String>();
-        	for(String consulate : consulateList ){
-        		LatLng consulateLL = new LatLng(latitude, longitude);
-            	map.addMarker(new MarkerOptions().position(consulateLL));
-  			}
+        	//ArrayList<Consulate> consulates = DatabaseManager.getConsulates("Canada");
+        	//for(Consulate consulate : consulates ){
+        	//	double consulateLatitude = consulate.getLatitude();
+        	//	double consulateLongitude = consulate.getLongitude();
+        	//	LatLng consulateLL = new LatLng(consulateLatitude, consulateLongitude);
+            //	map.addMarker(new MarkerOptions().position(consulateLL));
+  			//}
         	
         	
         	

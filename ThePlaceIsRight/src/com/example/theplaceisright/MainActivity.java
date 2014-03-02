@@ -89,8 +89,10 @@ public class MainActivity extends Activity implements
         if(item.getItemId() == R.id.action_search){
         	Intent intent = new Intent(this, MapInformationActivity.class);
         	location = locationClient.getLastLocation();
-    		intent.putExtra(LATITUDE, location.getLatitude());
-    		intent.putExtra(LONGITUDE, location.getLongitude());
+        	intent.putExtra(LATITUDE, 50);
+    		intent.putExtra(LONGITUDE, 50);
+    	//	intent.putExtra(LATITUDE, location.getLatitude());
+    	//	intent.putExtra(LONGITUDE, location.getLongitude());
     		startActivity(intent);
         }
         else if(item.getItemId() == R.id.change_locations){
