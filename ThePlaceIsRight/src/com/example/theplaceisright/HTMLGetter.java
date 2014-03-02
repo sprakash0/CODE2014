@@ -47,9 +47,4 @@ public class HTMLGetter extends AsyncTask<String,Void,String> {
 		return resString;
     }
 	
-	  @Override
-	  protected void onPostExecute(String result) {
-	   // execution of result of Long time consuming operation
-		  ContinentHTMLParser.parse(result);
-	  }
 }

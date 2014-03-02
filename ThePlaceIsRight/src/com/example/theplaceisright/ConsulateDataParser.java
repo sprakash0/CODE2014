@@ -10,12 +10,12 @@ import org.json.simple.JSONValue;
 
 public class ConsulateDataParser {
 
-	private String dataFile = "C:/Users/jenni/workspace/embassies-consulates-list.json";
+	private String url = "http://data.international.gc.ca/travel-voyage/embassies-consulates-list.json";
 	
 	// For testing purposes; can be removed later
-	public static void main(String[] args) {
+	public void test() {
 		ConsulateDataParser parser = new ConsulateDataParser();
-		ArrayList<Consulate> result = parser.readData();
+		ArrayList<Consulate> result = parser.readData("http://data.international.gc.ca/travel-voyage/embassies-consulates-list.json");
 		for (Consulate c : result) {
 			System.out.println("countryCode: " + c.getCountryCode());
 			System.out.println("country: " + c.getCountry());
@@ -32,13 +32,9 @@ public class ConsulateDataParser {
 		}
 	}	
 	
-	public ArrayList<Consulate> readData() {
+	public ArrayList<Consulate> readData(String str) {
 	
-		try {
-			
-			Object obj = JSONValue.parse(new FileReader(dataFile));
-
-			JSONObject jsonObject = (JSONObject) obj;
+			JSONObject jsonObject = (JSONObject) JSONValue.parse(str);
 
 			JSONObject data = (JSONObject) jsonObject.get("data");
 			int size = (int) data.keySet().size();
@@ -94,17 +90,12 @@ public class ConsulateDataParser {
 			
 		return consulates;	
 
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		
-		return null;
 
 	}
 	
-	public void setFile(String fileName) {
+	public void setURL(String u) {
 		
-		dataFile = fileName;
+		url = u;
 	}
 	
 }

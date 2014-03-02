@@ -2,12 +2,6 @@ package com.example.theplaceisright;
 
 public class Consulate {
 	private String country;
-	public String getCountryCode() {
-		return countryCode;
-	}
-	public void setCountryCode(String countryCode) {
-		this.countryCode = countryCode;
-	}
 	private String countryCode;
 	private Integer officeID;
 	private String city;
@@ -28,6 +22,12 @@ public class Consulate {
 	}
 	public void setCountry(String country) {
 		this.country = country;
+	}
+	public String getCountryCode() {
+		return countryCode;
+	}
+	public void setCountryCode(String countryCode) {
+		this.countryCode = countryCode;
 	}
 	public Integer getOfficeID() {
 		return officeID;
