@@ -19,7 +19,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		DBManager = new DatabaseManager(this);
-		DatabaseManager.initDatabases();
+		DatabaseManager.initDatabases(this);
 	}
 	
 	@Override
