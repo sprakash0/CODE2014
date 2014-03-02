@@ -58,7 +58,10 @@ public class FindConsulateActivity extends Activity {
 		options2 = new ArrayList<String>();
 		dynamicColorSpinner2 = (Spinner) findViewById(R.id.country_spinner);
 		dynamicColorLabel2 = (TextView) findViewById(R.id.textView2);
-		options2.add("Continents");
+
+		// Add continents to drop down list
+		addToDropDownContinent(ContinentCountry.continentNames);
+		
 		dataAdapter2 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, options2);
 		dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		dynamicColorSpinner2.setAdapter(dataAdapter2);
