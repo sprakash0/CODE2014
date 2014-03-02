@@ -20,11 +20,21 @@ public class CountryInfoFormatter {
 									+ cons.getAddress() + "\n"
 									+ "tel: " + cons.getTelephone() + "\n"
 									+ "fax:" + cons.getFax() + "\n"
-									+ "email: " + cons.getEmail()
+									+ "email: " + cons.getEmail() + "\n"
 									+  isPrimary + hasPassport;
 			
 			info.add(consulateInfo);
 		}
+		
+		return info;
+	}
+
+// If advisory exists, return the text of the advisory, otherwise return empty string
+public String getAdvisory(String country) {
+		
+		Advisory adv = DatabaseManager.getAdvisory(country);
+		
+		String info = (adv != null)? adv.getText() : "";
 		
 		return info;
 	}
