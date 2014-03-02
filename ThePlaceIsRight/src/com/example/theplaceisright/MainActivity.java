@@ -48,9 +48,10 @@ public class MainActivity extends Activity implements
 		// Get a handle to the Map Fragment
     	map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
     	locationClient = new LocationClient(this, this, this);
-
+        
 		//DBManager = new DatabaseManager(this);
 		//DatabaseManager.initDatabases(this);
+
 	}
 	
 //	@Override
@@ -66,13 +67,6 @@ public class MainActivity extends Activity implements
         // Connect location client
         locationClient.connect();
     }
-
-	@Override
-	protected void onStop(){
-		super.onStop();
-	//	DatabaseManager.close();
-	}
-
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -137,5 +131,4 @@ public class MainActivity extends Activity implements
 	@Override
 	public void onLocationChanged(Location location) {
 	}
-
 }
