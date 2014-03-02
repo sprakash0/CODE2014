@@ -152,6 +152,19 @@ public class DatabaseManager {
 	    }
 	}
 	
+	// Returns a list of consulates that provide passport services in the given country
+	public static ArrayList<Consulate> getPassportServices(String country) {
+		ArrayList<Consulate> cons = new ArrayList<Consulate>();
+		if (!checkInit(false)) return cons;
+		Cursor c = database.rawQuery("SELECT * FROM " 
+				+ DatabaseOpenHelper.TABLE_CONSULATE 
+				+ " WHERE UPPER(" + DatabaseOpenHelper.KEY_COUNTRY 
+				+ ") = '" + country.trim().toUpperCase() 
+				+ " AND " + DatabaseOpenHelper.VALUE_PASSPORT 
+				+ " > 0 " + "'", null);
+		return formatConsulateResults(c, cons);
+	}
+	
 	public static ArrayList<Consulate> getConsulates(String country) {
 		ArrayList<Consulate> cons = new ArrayList<Consulate>();
 		if (!checkInit(false)) return cons;
@@ -159,7 +172,10 @@ public class DatabaseManager {
 				+ DatabaseOpenHelper.TABLE_CONSULATE 
 				+ " WHERE UPPER(" + DatabaseOpenHelper.KEY_COUNTRY 
 				+ ") = '" + country.trim().toUpperCase() + "'", null);
+		return formatConsulateResults(c, cons);
+	}
 		
+	private static ArrayList<Consulate> formatConsulateResults(Cursor c, ArrayList<Consulate> cons) {
 		
 		if (!c.moveToFirst()) return cons;
 		do
