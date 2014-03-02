@@ -25,6 +25,8 @@ public class DatabaseManager {
 	private static boolean isInitContinent = false;
 	private static boolean isInitAdvisory = false;
 	
+	private static MainActivity activity;
+	
 	
 	public DatabaseManager(Context context) {
 		consulateHelper = new ConsulateDBHelper(context);
@@ -46,9 +48,11 @@ public class DatabaseManager {
 		continentDB.close();
 	}
 	
-	public static void initDatabases(){
+	public static void initDatabases(MainActivity act){
 		// note: all databases have overridden onOpen
 		// so to drop table 
+		
+		activity = act;
 		if (!isInitConsulate)
 		{
 			ConsulateDataParser consulateP = new ConsulateDataParser();
