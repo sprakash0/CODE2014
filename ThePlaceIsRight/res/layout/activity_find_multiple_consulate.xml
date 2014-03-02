@@ -50,10 +50,9 @@
         android:id="@+id/go"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/checkBox_consulate"
-        android:layout_below="@+id/checkBox_consulate"
-        android:layout_marginTop="31dp"
-        android:text="Go" 
-        android:onClick="go" />
+        android:layout_alignBottom="@+id/checkBox_consulate"
+        android:layout_alignRight="@+id/continent_spinner"
+        android:onClick="go"
+        android:text="Go" />
 
 </RelativeLayout>
