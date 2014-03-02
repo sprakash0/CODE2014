@@ -34,7 +34,6 @@ public class MapInformationActivity extends Activity {
         
         	// Get a handle to the Map Fragment
         	map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
-        	map.setMyLocationEnabled(true);
         	
         	// Set markers at consulate locations
         	
