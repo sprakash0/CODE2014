@@ -126,6 +126,7 @@ public class FindConsulateActivity extends Activity {
 	}
 
 private void setContinentListener() {
+	
 	//Continent
 	dynamicColorSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 		@Override
@@ -135,10 +136,6 @@ private void setContinentListener() {
 			prevIdx = pos;
 			
 			continent = parent.getItemAtPosition(pos).toString();
-			//dynamicColorLabel2.setText(continent);
-			//dynamicColorLabel2.setTextColor(Color.GREEN);
-			//options.add(continent);
-			//dynamicColorSpinner.setAdapter(dataAdapter);
 			System.out.println(continent);
 			ArrayList<String> temp = DatabaseManager.getCountries(continent);
 			if (temp!= null)
@@ -150,6 +147,7 @@ private void setContinentListener() {
 			else
 			{
 				System.out.println("Error! null list of countries");
+				
 			}
 			addToDropDownCountry(temp);
 		}
