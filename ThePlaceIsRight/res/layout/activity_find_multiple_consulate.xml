@@ -55,4 +55,14 @@
         android:onClick="go"
         android:text="Go" />
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/checkBox_consulate"
+        android:layout_below="@+id/checkBox_consulate"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="40dp"
+        android:text="Selected Countries" />
+
 </RelativeLayout>
