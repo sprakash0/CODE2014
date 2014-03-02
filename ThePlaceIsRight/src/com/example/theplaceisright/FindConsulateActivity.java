@@ -76,6 +76,12 @@ public class FindConsulateActivity extends Activity {
 		return true;
 	}
 	
+	public void go(View view) {
+	    // Do something in response to button
+		Intent intent = new Intent(this, MapInformationActivity.class);
+		startActivity(intent);
+	}
+	
 	boolean canAddItem = false;
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -124,7 +130,10 @@ private void setContinentListener() {
 		@Override
 		public void onItemSelected(AdapterView<?> parent, View view, int pos,
 				long id) {
+			
 			continent = parent.getItemAtPosition(pos).toString();
+			//dynamicColorLabel2.setText(continent);
+			//dynamicColorLabel2.setTextColor(Color.GREEN);
 			//options.add(continent);
 			//dynamicColorSpinner.setAdapter(dataAdapter);
 		}
@@ -140,9 +149,11 @@ private void setCountryListener() {
 	//Country
 	dynamicColorSpinner2.setOnItemSelectedListener(new OnItemSelectedListener() {
 		@Override
-		public void onItemSelected(AdapterView<?> parent, View view, int pos,
+		public void onItemSelected(AdapterView<?> parent2, View view, int pos,
 				long id) {
-			country = parent.getItemAtPosition(pos).toString();
+			country = parent2.getItemAtPosition(pos).toString();
+			//dynamicColorLabel.setText(country);
+			//dynamicColorLabel.setTextColor(Color.RED);
 			//options2.add(country);
 			//dynamicColorSpinner2.setAdapter(dataAdapter2);
 		}

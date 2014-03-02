@@ -66,8 +66,6 @@ public class FindMultipleConsulateActivity extends Activity {
 		addListenerOnConsolate();
 		addListenerOnPassport();
 		addListenerOnAdvisory();
-		
-		
 	}
 
 	@Override
@@ -95,8 +93,6 @@ public class FindMultipleConsulateActivity extends Activity {
 		
 		setContinentListener();
 		setCountryListener();
-		
-		
 		return true;
 	}
 	
