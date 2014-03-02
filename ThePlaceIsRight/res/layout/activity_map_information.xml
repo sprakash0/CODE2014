@@ -11,6 +11,17 @@
         android:layout_height="0dp"
         android:layout_weight="2" />
 	
+	<TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/advisory" />
+    
+    <TextView
+        android:id="@+id/advisoryTextView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+    
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,6 +31,6 @@
         android:id="@+id/consulateTextView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2" />
+        android:layout_weight="1" />
 
 </LinearLayout>

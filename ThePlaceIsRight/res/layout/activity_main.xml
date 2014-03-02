@@ -9,18 +9,16 @@
     tools:context=".MainActivity" >
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/button_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="@string/button_search"
         android:onClick="search" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/button_changelocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button2"
-        android:layout_marginTop="18dp"
         android:onClick="changeLocation"
         android:text="@string/button_changelocation" />
 
