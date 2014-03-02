@@ -32,6 +32,11 @@ class AdvisoryDBHelper extends SQLiteOpenHelper {
         db.execSQL(DICTIONARY_TABLE_CREATE);
     }
 
+    @Override
+    public void onOpen(SQLiteDatabase db) {
+        db.execSQL("DROP TABLE IF EXISTS " + DICTIONARY_TABLE_NAME);
+    }
+    
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		// TODO Auto-generated method stub

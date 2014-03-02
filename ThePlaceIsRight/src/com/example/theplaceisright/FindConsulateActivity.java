@@ -18,17 +18,18 @@ public class FindConsulateActivity extends Activity {
 	// Continents
 	 private Spinner dynamicColorSpinner;
 	 private TextView dynamicColorLabel;
-	 private ArrayList<String> options;
+	 private static ArrayList<String> options;
 	 
 	 //Countries
 	 private Spinner dynamicColorSpinner2;
 	 private TextView dynamicColorLabel2;
-	 private ArrayList<String> options2;
+	 private static ArrayList<String> options2;
 	 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_find_consulate);
+		addToDropDownContinent(ContinentCountry.continentNames);
 	}
 
 	@Override
@@ -79,15 +80,15 @@ public class FindConsulateActivity extends Activity {
 		return true;
 	}
 	
-	public void addToDropDownCountry(ArrayList<String> itemList){
+	public static void addToDropDownCountry(ArrayList<String> itemList){
 		for(String item : itemList ){
 			  options.add(item);
 			}
 	}
 	
-	public void addToDropDownContinent(ArrayList<String> itemList){
-		for(String item : itemList ){
-			  options2.add(item);
+	public static void addToDropDownContinent(String[] itemList){
+		for(int i = 0; i < itemList.length; i++){
+			  options2.add(itemList[i]);
 			}
 	}
 	

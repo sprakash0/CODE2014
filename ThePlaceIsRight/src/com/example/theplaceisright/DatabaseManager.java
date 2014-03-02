@@ -12,14 +12,19 @@ import android.util.Log;
 
 public class DatabaseManager {
 	// TODO: add more databases
-	private SQLiteDatabase consulateDB;
-	private ConsulateDBHelper consulateHelper;
+	private static SQLiteDatabase consulateDB;
+	private static ConsulateDBHelper consulateHelper;
 	
-	private SQLiteDatabase advisoryDB;
-	private AdvisoryDBHelper advisoryHelper;
+	private static SQLiteDatabase advisoryDB;
+	private static AdvisoryDBHelper advisoryHelper;
 
-	private SQLiteDatabase continentDB;
-	private ContinentDBHelper continentHelper;
+	private static SQLiteDatabase continentDB;
+	private static ContinentDBHelper continentHelper;
+	
+	private static boolean isInitConsulate = false;
+	private static boolean isInitContinent = false;
+	private static boolean isInitAdvisory = false;
+	
 	
 	public DatabaseManager(Context context) {
 		consulateHelper = new ConsulateDBHelper(context);
@@ -29,19 +34,77 @@ public class DatabaseManager {
 	}
 
 	// TODO: add more database helpers
-	private void open() throws SQLException {
+	private static void open() throws SQLException {
 		consulateDB = consulateHelper.getWritableDatabase();
 		advisoryDB = advisoryHelper.getWritableDatabase();
 		continentDB = continentHelper.getWritableDatabase();
 	}
 
-	public void close() {
+	public static void close() {
 		consulateHelper.close();
 		advisoryDB.close();
 		continentDB.close();
 	}
 	
-	public void insertConsulate(Consulate ins) {
+	public static void initDatabases(){
+		// note: all databases have overridden onOpen
+		// so to drop table 
+		if (!isInitConsulate)
+		{
+			ConsulateDataParser consulateP = new ConsulateDataParser();
+			consulateP.run();
+		}
+		
+		if (!isInitContinent)
+		{
+			ContinentHTMLParser continentP = new ContinentHTMLParser();
+			continentP.run();
+		}
+		
+		if (!isInitAdvisory)
+		{
+			//AdvisoryParser consulateP = new ConsulateDataParser();
+			//consulateP.run();
+		}
+	}
+	
+	private static void checkInit(){
+		if (isInitConsulate && isInitContinent && isInitAdvisory)
+		{
+			// TODO update UI
+		}
+	}
+	
+	public static void importConsulates(ArrayList<Consulate> ins) {
+		for (Consulate c : ins) {
+			insertConsulate(c);
+		}
+		
+		isInitConsulate = true;
+		checkInit();
+	}
+
+	public static void importContinents(ArrayList<ContinentCountry> ins) {
+		for (ContinentCountry c : ins) {
+			insertContinent(c);
+		}
+		
+		isInitContinent = true;
+		checkInit();
+	}
+
+	public static void importAdvisory(ArrayList<Advisory> ins) {
+		for (Advisory a : ins) {
+			insertAdvisory(a);
+		}
+		
+		isInitAdvisory = true;
+		checkInit();
+	}
+
+	
+	public static void insertConsulate(Consulate ins) {
+		if (ins == null) return;
 	    ContentValues values = new ContentValues();
 	    values.put(ConsulateDBHelper.KEY_COUNTRY, ins.getCountry());
 	    values.put(ConsulateDBHelper.KEY_OFFICE, ins.getOfficeID());
@@ -64,7 +127,7 @@ public class DatabaseManager {
 	    }
 	}
 	
-	public ArrayList<Consulate> getConsulates(String country) {
+	public static ArrayList<Consulate> getConsulates(String country) {
 		Cursor c = consulateDB.rawQuery("SELECT * FROM " 
 				+ ConsulateDBHelper.DICTIONARY_TABLE_NAME 
 				+ " WHERE UPPER(" + ConsulateDBHelper.KEY_COUNTRY 
@@ -141,7 +204,8 @@ public class DatabaseManager {
 		return cons;
 	}
 	
-	public void insertAdvisory(Advisory ins) {
+	public static void insertAdvisory(Advisory ins) {
+		if (ins == null) return;
 	    ContentValues values = new ContentValues();
 	    values.put(AdvisoryDBHelper.KEY_COUNTRY, ins.getCountry());
 	    values.put(AdvisoryDBHelper.VALUE_CODE, ins.getCountryCode());
@@ -154,7 +218,7 @@ public class DatabaseManager {
 	}
 	
 
-	public Advisory getAdvisory(String country) {
+	public static Advisory getAdvisory(String country) {
 		Cursor c = advisoryDB.rawQuery("SELECT * FROM " 
 				+ AdvisoryDBHelper.DICTIONARY_TABLE_NAME 
 				+ " WHERE UPPER(" + AdvisoryDBHelper.KEY_COUNTRY 
@@ -184,7 +248,8 @@ public class DatabaseManager {
 
 	}
 	
-	public void insertContinent(ContinentCountry ins) {
+	public static void insertContinent(ContinentCountry ins) {
+		if (ins == null) return;
 	    ContentValues values = new ContentValues();
 	    values.put(ContinentDBHelper.KEY_COUNTRY2, ins.getCountryCode2());
 	    values.put(ContinentDBHelper.VALUE_CONTINENT, ins.getContinent());
@@ -192,7 +257,7 @@ public class DatabaseManager {
 	    continentDB.insert(ConsulateDBHelper.DICTIONARY_TABLE_NAME, null, values);
 	}
 	
-	public ArrayList<String> getCountries(String continentName) {
+	public static ArrayList<String> getCountries(String continentName) {
 		// TODO select for certain columns only?
 		Cursor c = continentDB.rawQuery("SELECT * FROM " 
 				+ ContinentDBHelper.DICTIONARY_TABLE_NAME +  " AS a, "
