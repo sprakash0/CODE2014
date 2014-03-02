@@ -29,13 +29,13 @@ class ConsulateDBHelper extends SQLiteOpenHelper {
                 KEY_COUNTRY + " TEXT NOT NULL," +
                 KEY_OFFICE + " INTEGER NOT NULL, " +
                 VALUE_CODE + " TEXT NOT NULL," +
-                VALUE_PRIMARY + " INTEGER NOT NULL, " +
-                VALUE_PASSPORT + " INTEGER NOT NULL, " +
-                VALUE_CITY + " TEXT NOT NULL," +
+                VALUE_PRIMARY + " INTEGER, " +
+                VALUE_PASSPORT + " INTEGER, " +
+                VALUE_CITY + " TEXT," +
                 VALUE_TYPE + " TEXT," +
-                VALUE_LAT + " REAL NOT NULL, " +
-                VALUE_LON + " REAL NOT NULL, " +
-                VALUE_ADDRESS + " TEXT NOT NULL," +
+                VALUE_LAT + " REAL, " +
+                VALUE_LON + " REAL, " +
+                VALUE_ADDRESS + " TEXT," +
                 VALUE_TEL + " TEXT," +
                 VALUE_EMERG + " TEXT," +
                 VALUE_FAX + " TEXT," +

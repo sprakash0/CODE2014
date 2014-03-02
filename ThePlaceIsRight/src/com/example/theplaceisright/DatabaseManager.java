@@ -7,6 +7,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 
 public class DatabaseManager {
@@ -37,6 +38,7 @@ public class DatabaseManager {
 	    ContentValues values = new ContentValues();
 	    values.put(ConsulateDBHelper.KEY_COUNTRY, ins.getCountry());
 	    values.put(ConsulateDBHelper.KEY_OFFICE, ins.getOfficeID());
+	    values.put(ConsulateDBHelper.VALUE_CODE, ins.getCountryCode());
 	    values.put(ConsulateDBHelper.VALUE_PRIMARY, (ins.getIsPrimary()?1:0));
 	    values.put(ConsulateDBHelper.VALUE_PASSPORT, (ins.getHasPassport()?1:0));
 	    values.put(ConsulateDBHelper.VALUE_CITY, ins.getCity());
@@ -48,7 +50,11 @@ public class DatabaseManager {
 	    values.put(ConsulateDBHelper.VALUE_EMERG, ins.getEmergency());
 	    values.put(ConsulateDBHelper.VALUE_FAX, ins.getFax());
 	    values.put(ConsulateDBHelper.VALUE_EMAIL, ins.getEmail());
-	    consulateDB.insert(ConsulateDBHelper.DICTIONARY_TABLE_NAME, null, values);
+	    if (consulateDB.insert(ConsulateDBHelper.DICTIONARY_TABLE_NAME, null, values) < 0) {
+	    	Log.w(DatabaseManager.class.getName(), "Error when inserting new consulate row with " +
+	    			"country = " + ins.getCountry() + ", officeID = " + ins.getOfficeID() + 
+	    			", country code = " + ins.getCountryCode());
+	    }
 	}
 	
 	public ArrayList<Consulate> getConsulates(String country) {
@@ -127,6 +133,19 @@ public class DatabaseManager {
 		
 		return cons;
 	}
+	
+	public void insertAdvisory(Advisory ins) {
+	    ContentValues values = new ContentValues();
+	    values.put(AdvisoryDBHelper.KEY_COUNTRY, ins.getCountry());
+	    values.put(AdvisoryDBHelper.VALUE_CODE, ins.getCountryCode());
+	    values.put(AdvisoryDBHelper.VALUE_DATE , ins.getDate());
+	    values.put(AdvisoryDBHelper.VALUE_TEXT, ins.getText());
+	    if (advisoryDB.insert(AdvisoryDBHelper.DICTIONARY_TABLE_NAME, null, values) < 0) {
+	    	Log.w(DatabaseManager.class.getName(), "Error when inserting new advisory row with " +
+	    			"country = " + ins.getCountry() + ", country code = " + ins.getCountryCode());
+	    }
+	}
+	
 
 	public Advisory getAdvisory(String country) {
 		Cursor c = advisoryDB.rawQuery("SELECT * FROM " 
