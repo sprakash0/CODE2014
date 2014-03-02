@@ -4,18 +4,24 @@ import java.util.ArrayList;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 public class FindMultipleConsulateActivity extends Activity {
+	
+	public final static String COUNTRIES_LIST = "com.example.theplaceisright.MESSAGE";
+	public final static String SHOW_ADVISORY = "com.example.theplaceisright.MESSAGE";
+	public final static String SHOW_CONSULATE = "com.example.theplaceisright.MESSAGE";
 	
 		private CheckBox consolate, passport, advisory;
 		private boolean yesConsolate = false;
@@ -57,6 +63,12 @@ public class FindMultipleConsulateActivity extends Activity {
 		addListenerOnConsolate();
 		addListenerOnPassport();
 		addListenerOnAdvisory();
+		
+		Intent intent = new Intent(this, MultipleSummaryActivity.class);
+		intent.putStringArrayListExtra(COUNTRIES_LIST, options);
+		intent.putExtra(SHOW_ADVISORY, yesAdvisory);
+		intent.putExtra(SHOW_CONSULATE, yesConsolate);
+		startActivity(intent);
 	}
 
 	@Override

@@ -14,10 +14,7 @@
     <string name="change_location">Item2</string>
     <string name="title_activity_consulate_query">ConsulateQuery</string>
     <string name="title_activity_find_consulate">FindConsulateActivity</string>
-<<<<<<< HEAD
     <string name="title_activity_multiple_summary">MultipleSummaryActivity</string>
-=======
     <string name="title_activity_find_multiple_consulate">FindMultipleConsulateActivity</string>
->>>>>>> 3560fca4152e930e88e5b3a4ff28d442d0bbb47d
 
 </resources>
