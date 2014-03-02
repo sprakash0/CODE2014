@@ -24,6 +24,7 @@ public class MultipleSummaryActivity extends Activity {
         
         // Create the text view
         TextView textView = new TextView(this);
+        textView.setText(""+showConsulate);
         
       //  for (int i=0; i<countries_list.size(); i++) {
         	// Get country_name, advisory, and consulate
