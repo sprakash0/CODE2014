@@ -87,7 +87,8 @@ public class DatabaseManager {
 		{
 			if (updateUI)
 			{
-			// TODO update UI
+				Log.d(DatabaseManager.class.getName(), "finished database init");
+				activity.next(null);
 			}
 			return true;
 		}
