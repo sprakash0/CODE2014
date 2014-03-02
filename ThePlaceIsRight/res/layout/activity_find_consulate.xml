@@ -39,5 +39,16 @@
          android:layout_alignLeft="@+id/continent_spinner"
          android:text="Select Country"
          android:textAppearance="?android:attr/textAppearanceLarge" />
+
+     <Button
+         android:id="@+id/button_go"
+         style="?android:attr/buttonStyleSmall"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentBottom="true"
+         android:layout_alignRight="@+id/continent_spinner"
+         android:layout_marginBottom="18dp"
+         android:text="Go"
+         android:onClick="go" />
     
 </RelativeLayout>
