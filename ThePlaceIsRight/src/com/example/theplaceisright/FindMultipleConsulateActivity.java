@@ -25,6 +25,7 @@ public class FindMultipleConsulateActivity extends Activity {
 	public final static String COUNTRIES_LIST = "com.example.theplaceisright.MESSAGE";
 	public final static String SHOW_ADVISORY = "com.example.theplaceisright.MESSAGE";
 	public final static String SHOW_CONSULATE = "com.example.theplaceisright.MESSAGE";
+	public final static String SHOW_PASSPORT_ONLY = "com.example.theplaceisright.MESSAGE";
 	
 		private CheckBox consolate, passport, advisory;
 		private boolean yesConsolate = false;
@@ -102,6 +103,7 @@ public class FindMultipleConsulateActivity extends Activity {
 		intent.putStringArrayListExtra(COUNTRIES_LIST, options);
 		intent.putExtra(SHOW_ADVISORY, yesAdvisory);
 		intent.putExtra(SHOW_CONSULATE, yesConsolate);
+		intent.putExtra(SHOW_PASSPORT_ONLY, yesPassport);
 		startActivity(intent);
 	}
 	
