@@ -35,6 +35,9 @@ public class MainActivity extends Activity implements
             .setFastestInterval(16)    // 16ms = 60fps
             .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 	
+	public final static String LATITUDE = "com.example.theplaceisright.MESSAGE";
+	public final static String LONGITUDE = "com.example.theplaceisright.MESSAGE";
+	
 	private GoogleMap map;
 	private LocationClient locationClient;
 	private Location location;
@@ -85,6 +88,9 @@ public class MainActivity extends Activity implements
  
         if(item.getItemId() == R.id.action_search){
         	Intent intent = new Intent(this, MapInformationActivity.class);
+        	location = locationClient.getLastLocation();
+    		intent.putExtra(LATITUDE, location.getLatitude());
+    		intent.putExtra(LONGITUDE, location.getLongitude());
     		startActivity(intent);
         }
         else if(item.getItemId() == R.id.change_locations){
@@ -109,6 +115,8 @@ public class MainActivity extends Activity implements
 	public void search(View view) {
 	    // Do something in response to button
 		Intent intent = new Intent(this, MapInformationActivity.class);
+		intent.putExtra(LATITUDE, location.getLatitude());
+		intent.putExtra(LONGITUDE, location.getLongitude());
 		startActivity(intent);
 	}
 	

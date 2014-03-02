@@ -44,7 +44,11 @@
         </activity>
         <activity
             android:name="com.example.theplaceisright.MapInformationActivity"
-            android:label="@string/title_activity_map_information" >
+            android:label="@string/title_activity_map_information" 
+            android:parentActivityName="com.example.theplaceisright.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.theplaceisright.MainActivity" />
         </activity>
 
         <meta-data

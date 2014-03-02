@@ -18,34 +18,36 @@ public class MultipleSummaryActivity extends Activity {
 		
 		// Get the message from the intent
         Intent intent = getIntent();
-     //   ArrayList<String> countries_list = intent.getStringArrayListExtra(FindMultipleConsulateActivity.COUNTRIES_LIST);
-      //  boolean showAdvisory = intent.getBooleanExtra(FindMultipleConsulateActivity.SHOW_ADVISORY, true);
+        ArrayList<String> countries_list = intent.getStringArrayListExtra(FindMultipleConsulateActivity.COUNTRIES_LIST);
+        boolean showAdvisory = intent.getBooleanExtra(FindMultipleConsulateActivity.SHOW_ADVISORY, true);
         boolean showConsulate = intent.getBooleanExtra(FindMultipleConsulateActivity.SHOW_CONSULATE, true);
         
         // Create the text view
         TextView textView = new TextView(this);
-        textView.setText(""+showConsulate);
-        
-      //  for (int i=0; i<countries_list.size(); i++) {
-        	// Get country_name, advisory, and consulate
-        	String country_name = "";
-        	textView.setText(textView.getText() + "\n" + country_name + "\n"); 
+        if(countries_list != null) {
+        	for (int i=0; i<countries_list.size(); i++) {
+        		// Get country_name from the list of selected countries
+        		String country_name = countries_list.get(i);
+        		textView.setText(textView.getText() + "\n" + country_name + "\n"); 
         	
-//        	if (showAdvisory) {
-//        	Advisory a = new Advisory();
-//        	a.setCountry(country_name);
-//        	String advisory = a.getText();
-//        	textView.setText(textView.getText() + "Advisory: " + advisory +"\n");
-//        	}
+        		// If Advisory was checked, show advisory information
+        		if (showAdvisory) {
+        			Advisory a = new Advisory();
+        			a.setCountry(country_name);
+        			String advisory = a.getText();
+        			textView.setText(textView.getText() + "Advisory: " + advisory +"\n");
+        		}
         	
-        	if (showConsulate) {
-        	Consulate c = new Consulate();
-        	c.setCountry(country_name);
-        	String consulate = c.getAddress();
-        	textView.setText(textView.getText() + "Consulate Location: " + consulate + "\n");
+        		// If Consulate was checked, show consulate information
+        		if (showConsulate) {
+        			Consulate c = new Consulate();
+        			c.setCountry(country_name);
+        			String consulate = c.getAddress();
+        			textView.setText(textView.getText() + "Consulate Location: " + consulate + "\n");
+        		}		
         	}
-			
-    //    }
+        }
+        
         // Set the text view as the activity layout
         setContentView(textView);
 	}
