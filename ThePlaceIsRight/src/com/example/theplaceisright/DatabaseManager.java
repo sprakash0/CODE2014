@@ -17,9 +17,13 @@ public class DatabaseManager {
 	private SQLiteDatabase advisoryDB;
 	private AdvisoryDBHelper advisoryHelper;
 
+	private SQLiteDatabase continentDB;
+	private ContinentDBHelper continentHelper;
+	
 	public DatabaseManager(Context context) {
 		consulateHelper = new ConsulateDBHelper(context);
 		advisoryHelper = new AdvisoryDBHelper(context);
+		continentHelper = new ContinentDBHelper(context);
 		open();
 	}
 
@@ -27,10 +31,13 @@ public class DatabaseManager {
 	private void open() throws SQLException {
 		consulateDB = consulateHelper.getWritableDatabase();
 		advisoryDB = advisoryHelper.getWritableDatabase();
+		continentDB = continentHelper.getWritableDatabase();
 	}
 
 	public void close() {
 		consulateHelper.close();
+		advisoryDB.close();
+		continentDB.close();
 	}
 	
 	public void insertConsulate(Consulate ins) {
@@ -156,5 +163,40 @@ public class DatabaseManager {
 		
 		return curr;
 
+	}
+	
+	public void insertContinent(ContinentCountry ins) {
+	    ContentValues values = new ContentValues();
+	    values.put(ContinentDBHelper.KEY_COUNTRY2, ins.getCountryCode2());
+	    values.put(ContinentDBHelper.VALUE_CONTINENT, ins.getContinent());
+	    values.put(ContinentDBHelper.VALUE_COUNTRY3, ins.getCountryCode3());
+	    continentDB.insert(ConsulateDBHelper.DICTIONARY_TABLE_NAME, null, values);
+	}
+	
+	public ArrayList<String> getCountries(String continentName) {
+		// TODO select for certain columns only?
+		Cursor c = continentDB.rawQuery("SELECT * FROM " 
+				+ ContinentDBHelper.DICTIONARY_TABLE_NAME +  " AS a, "
+				+ ConsulateDBHelper.DICTIONARY_TABLE_NAME +  " AS b, "
+				+ " WHERE "
+				+ "UPPER(a." + ContinentDBHelper.KEY_COUNTRY2 + ") = '" 
+				+ ContinentCountry.continentNameToCode(continentName.trim().toUpperCase()) + "'"
+				+ " AND "
+				+ "a." + ContinentDBHelper.KEY_COUNTRY2 + " = "
+				+ "b." + ConsulateDBHelper.VALUE_CODE 
+				, null);
+		
+		ArrayList<String> countries = new ArrayList<String>();
+		
+		if (!c.moveToFirst()) return countries;
+		do
+		{
+			int idx = c.getColumnIndex(ContinentDBHelper.KEY_COUNTRY2);
+			if (idx >= 0)
+				countries.add(c.getString(idx));
+		} while (c.moveToNext());
+		c.close();
+		
+		return countries;
 	}
 }
