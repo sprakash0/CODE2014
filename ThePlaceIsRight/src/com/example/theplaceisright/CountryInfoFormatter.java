@@ -43,7 +43,7 @@ public class CountryInfoFormatter {
 			coordinates.add(latlng);
 		}
 		
-		return null;
+		return coordinates;
 	}
 
 	// If advisory exists, return the text of the advisory, otherwise return empty string
