@@ -15,18 +15,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
     
-    <Button
-        android:id="@+id/button_search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/button_search"
-        android:onClick="search" />
-
-    <Button
-        android:id="@+id/button_changelocation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="changeLocation"
-        android:text="@string/button_changelocation" />
+    
 
 </LinearLayout>

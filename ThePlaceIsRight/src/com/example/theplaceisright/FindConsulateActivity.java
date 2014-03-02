@@ -8,6 +8,8 @@ import android.graphics.Color;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
@@ -24,13 +26,13 @@ public class FindConsulateActivity extends Activity {
 	 private Spinner dynamicColorSpinner2;
 	 private TextView dynamicColorLabel2;
 	 private static ArrayList<String> options2;
-//	 
-//	@Override
-//	protected void onCreate(Bundle savedInstanceState) {
-//		super.onCreate(savedInstanceState);
-//		setContentView(R.layout.activity_find_consulate);
-//		addToDropDownContinent(ContinentCountry.continentNames);
-//	}
+	 
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_find_consulate);
+		//addToDropDownContinent(ContinentCountry.continentNames);
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -55,6 +57,8 @@ public class FindConsulateActivity extends Activity {
 		dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		dynamicColorSpinner2.setAdapter(dataAdapter2);
 		
+		setContinentListener();
+		
 		return true;
 	}
 	
@@ -69,7 +73,23 @@ public class FindConsulateActivity extends Activity {
 			  options2.add(itemList[i]);
 			}
 	}
-	
 
+private void setContinentListener() {
+	//Continent
+	dynamicColorSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 
-}
+		@Override
+		public void onItemSelected(AdapterView<?> parent, View view, int pos,
+				long id) {
+			String continent = parent.getItemAtPosition(pos).toString();
+			
+		}
+
+		@Override
+		public void onNothingSelected(AdapterView<?> arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+    });
+
+}}

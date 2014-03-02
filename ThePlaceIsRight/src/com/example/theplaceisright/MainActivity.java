@@ -85,6 +85,10 @@ public class MainActivity extends Activity implements
         	Intent intent = new Intent(this, MapInformationActivity.class);
     		startActivity(intent);
         }
+        else if(item.getItemId() == R.id.change_locations){
+        	Intent intent = new Intent(this, FindConsulateActivity.class);
+    		startActivity(intent);
+        }
         else{
         	
         }
