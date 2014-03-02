@@ -319,7 +319,7 @@ public class DatabaseManager {
 				+ "a." + DatabaseOpenHelper.KEY_COUNTRY2 + " = "
 				+ "b." + DatabaseOpenHelper.VALUE_CODE
 				+ " WHERE "
-				+ "UPPER(a." + DatabaseOpenHelper.KEY_COUNTRY2 + ") = '" 
+				+ "UPPER(a." + DatabaseOpenHelper.VALUE_CONTINENT + ") = '" 
 				+ code + "'";
 		
 		database = dbHelper.getWritableDatabase();
@@ -328,9 +328,13 @@ public class DatabaseManager {
 		if (!c.moveToFirst()) return countries;
 		do
 		{
-			int idx = c.getColumnIndex(DatabaseOpenHelper.KEY_COUNTRY2);
+			int idx = c.getColumnIndex(DatabaseOpenHelper.KEY_COUNTRY);
 			if (idx >= 0)
-				countries.add(c.getString(idx));
+			{
+				String str = c.getString(idx);
+				if (str != null)
+					countries.add(str);
+			}
 		} while (c.moveToNext());
 		c.close();
 		
