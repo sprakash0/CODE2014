@@ -46,4 +46,13 @@
         android:layout_alignLeft="@+id/country_spinner"
         android:layout_below="@+id/country_spinner" />
 
+    <Button
+        android:id="@+id/go"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/checkBox_consulate"
+        android:layout_below="@+id/checkBox_consulate"
+        android:layout_marginTop="31dp"
+        android:text="Go" />
+
 </RelativeLayout>

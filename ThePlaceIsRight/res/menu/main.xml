@@ -10,10 +10,21 @@
           android:icon="@drawable/ic_action_map"
           android:title="Change Location"
           android:showAsAction="ifRoom" />
+     
+     <item android:id="@+id/go_home"
+          android:icon="@drawable/home"
+          android:title="Home"
+          android:showAsAction="ifRoom" />
+     
+     <item android:id="@+id/multiple"
+          android:icon="@drawable/multiple"
+          android:title="Multisearch"
+          android:showAsAction="ifRoom" />
 
     
     <!-- Settings, should always be in the overflow -->
     <item android:id="@+id/action_settings"
+       	  android:icon="@drawable/overflow"
           android:title="@string/action_settings"
           android:showAsAction="never" />
     

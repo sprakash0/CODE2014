@@ -4,8 +4,10 @@ import java.util.ArrayList;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -71,6 +73,31 @@ public class FindConsulateActivity extends Activity {
 		
 		return true;
 	}
+	
+	boolean canAddItem = false;
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+ 
+        if(item.getItemId() == R.id.action_search){
+        	Intent intent = new Intent(this, MapInformationActivity.class);
+    		startActivity(intent);
+        }
+        else if(item.getItemId() == R.id.change_locations){
+        	Intent intent = new Intent(this, FindConsulateActivity.class);
+    		startActivity(intent);
+        }
+        else if(item.getItemId() == R.id.go_home){
+        	Intent intent = new Intent(this, MainActivity.class);
+    		startActivity(intent);
+        }else if(item.getItemId() == R.id.multiple){
+        	Intent intent = new Intent(this, FindMultipleConsulateActivity.class);
+    		startActivity(intent);
+        }else{
+        	
+        }
+ 
+        return super.onOptionsItemSelected(item);
+    }
 	
 	public static void addToDropDownCountry(ArrayList<String> itemList){
 		options.clear();

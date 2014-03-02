@@ -89,8 +89,15 @@ public class MainActivity extends Activity implements
         	Intent intent = new Intent(this, FindConsulateActivity.class);
     		startActivity(intent);
         }
-        else{
-        	
+        else if(item.getItemId() == R.id.go_home){
+        	Intent intent = new Intent(this, MainActivity.class);
+    		startActivity(intent);
+        }else if(item.getItemId() == R.id.multiple){
+        	Intent intent = new Intent(this, FindMultipleConsulateActivity.class);
+    		startActivity(intent);
+        }else if(item.getItemId() == R.id.action_settings){
+        	Intent intent = new Intent(this, FindMultipleConsulateActivity.class);
+    		startActivity(intent);
         }
  
         return super.onOptionsItemSelected(item);

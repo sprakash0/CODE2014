@@ -1,5 +1,26 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
+     <item android:id="@+id/action_search"
+          android:icon="@drawable/ic_action_search"
+          android:title="Search Nearby"
+          android:showAsAction="ifRoom" />
+    
+     <item android:id="@+id/change_locations"
+          android:icon="@drawable/ic_action_map"
+          android:title="Change Location"
+          android:showAsAction="ifRoom" />
+     
+      <item android:id="@+id/go_home"
+          android:icon="@drawable/home"
+          android:title="Home"
+          android:showAsAction="ifRoom" />
+     
+      <item android:id="@+id/multiple"
+          android:icon="@drawable/multiple"
+          android:title="Multisearch"
+          android:showAsAction="ifRoom" />
+      
+    
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
