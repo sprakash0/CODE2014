@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -48,6 +49,9 @@ public class FindMultipleConsulateActivity extends Activity {
 		 private String continent;
 		 private int prevIdx = -1;
 		 
+		 private TextView selectedCountries;
+		 
+		 private ArrayList<String> selectedCountriesList;
 	
 	public String getCountry(){
 				
@@ -64,6 +68,8 @@ public class FindMultipleConsulateActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_find_multiple_consulate);
+		//List of countries selected
+		selectedCountries = (TextView) findViewById(R.id.selectedCountries);
 		//action listeners
 		addListenerOnConsolate();
 		addListenerOnPassport();
@@ -74,6 +80,9 @@ public class FindMultipleConsulateActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.find_consulate, menu);
+		
+		//List of countries to pass to the Summary Activity
+		selectedCountriesList = new ArrayList<String>();
 		
 		//Countries
 		optionsCountry = new ArrayList<String>();
@@ -196,10 +205,11 @@ private void setCountryListener() {
 		public void onItemSelected(AdapterView<?> parent2, View view, int pos,
 				long id) {
 			country = parent2.getItemAtPosition(pos).toString();
-			//dynamicColorLabel.setText(country);
-			//dynamicColorLabel.setTextColor(Color.RED);
-			//options2.add(country);
-			//dynamicColorSpinner2.setAdapter(dataAdapter2);
+			selectedCountriesList.add(country);
+			String displayCountries = "";
+			for (String c: selectedCountriesList)
+				displayCountries = displayCountries + " " + c;
+			selectedCountries.setText(displayCountries);
 		}
 		@Override
 		public void onNothingSelected(AdapterView<?> arg0) {
