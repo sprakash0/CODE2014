@@ -66,8 +66,6 @@ public class FindMultipleConsulateActivity extends Activity {
 		addListenerOnConsolate();
 		addListenerOnPassport();
 		addListenerOnAdvisory();
-		
-		
 	}
 
 	@Override
@@ -95,16 +93,14 @@ public class FindMultipleConsulateActivity extends Activity {
 		
 		setContinentListener();
 		setCountryListener();
-		
-		
 		return true;
 	}
 	
 	public void go(View view) {
 	    // Do something in response to button
 		Intent intent = new Intent(this, MultipleSummaryActivity.class);
-		//intent.putStringArrayListExtra(COUNTRIES_LIST, options);
-		//intent.putExtra(SHOW_ADVISORY, yesAdvisory);
+		intent.putStringArrayListExtra(COUNTRIES_LIST, options);
+		intent.putExtra(SHOW_ADVISORY, yesAdvisory);
 		intent.putExtra(SHOW_CONSULATE, yesConsolate);
 		startActivity(intent);
 	}

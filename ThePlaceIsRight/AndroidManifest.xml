@@ -44,7 +44,11 @@
         </activity>
         <activity
             android:name="com.example.theplaceisright.MapInformationActivity"
-            android:label="@string/title_activity_map_information" >
+            android:label="@string/title_activity_map_information" 
+            android:parentActivityName="com.example.theplaceisright.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.theplaceisright.MainActivity" />
         </activity>
 
         <meta-data
@@ -65,12 +69,16 @@
             android:label="@string/title_activity_find_consulate" >
         </activity>
         <activity
-            android:name="com.example.theplaceisright.MultipleSummaryActivity"
-            android:label="@string/title_activity_multiple_summary" >
-        </activity>
-        <activity
             android:name="com.example.theplaceisright.FindMultipleConsulateActivity"
             android:label="@string/title_activity_find_multiple_consulate" >
+        </activity>
+       	<activity
+            android:name="com.example.theplaceisright.MultipleSummaryActivity"
+            android:label="@string/title_activity_multiple_summary"
+            android:parentActivityName="com.example.theplaceisright.FindMultipleConsulateActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.theplaceisright.FindMultipleConsulateActivity" />
         </activity>
     </application>
 

@@ -40,11 +40,23 @@ public class MapInformationActivity extends Activity {
         	// Get a handle to the Map Fragment
         	map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
         	
+        	// Get latitude, longitude from main activity
+        	Intent intent = getIntent();
+        	double latitude = intent.getDoubleExtra(MainActivity.LATITUDE, 0);
+        	double longitude = intent.getDoubleExtra(MainActivity.LONGITUDE, 0);
+        	LatLng consulateLL = new LatLng(latitude, longitude);
+
+        	map.addMarker(new MarkerOptions().position(consulateLL));
         	// Set markers at consulate locations
         	
         	// If latitude/longitude is valid, add marker to map
-        	LatLng consulateLL = new LatLng(0, 0);
-        	map.addMarker(new MarkerOptions().position(consulateLL));
+        	//ArrayList<Consulate> consulates = DatabaseManager.getConsulates("Canada");
+        	//for(Consulate consulate : consulates ){
+        	//	double consulateLatitude = consulate.getLatitude();
+        	//	double consulateLongitude = consulate.getLongitude();
+        	//	LatLng consulateLL = new LatLng(consulateLatitude, consulateLongitude);
+            //	map.addMarker(new MarkerOptions().position(consulateLL));
+  			//}
         	
         	
         	// If latitude/longitude is not valid, use address to add marker to map
