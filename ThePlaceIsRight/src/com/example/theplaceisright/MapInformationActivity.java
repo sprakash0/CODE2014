@@ -59,7 +59,6 @@ public class MapInformationActivity extends Activity {
   			//}
         	
         	
-        	
         	// If latitude/longitude is not valid, use address to add marker to map
         	String address = "7128 Kerr St, Vancouver, BC";
         	Geocoder geoCoder = new Geocoder(this);
