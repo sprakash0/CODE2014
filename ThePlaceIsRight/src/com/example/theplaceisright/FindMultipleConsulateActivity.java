@@ -18,6 +18,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemSelectedListener;
 
+//** broken atm
+
 public class FindMultipleConsulateActivity extends Activity {
 	
 	public final static String COUNTRIES_LIST = "com.example.theplaceisright.MESSAGE";
@@ -65,11 +67,7 @@ public class FindMultipleConsulateActivity extends Activity {
 		addListenerOnPassport();
 		addListenerOnAdvisory();
 		
-		Intent intent = new Intent(this, MultipleSummaryActivity.class);
-		intent.putStringArrayListExtra(COUNTRIES_LIST, options);
-		intent.putExtra(SHOW_ADVISORY, yesAdvisory);
-		intent.putExtra(SHOW_CONSULATE, yesConsolate);
-		startActivity(intent);
+		
 	}
 
 	@Override
@@ -104,7 +102,10 @@ public class FindMultipleConsulateActivity extends Activity {
 	
 	public void go(View view) {
 	    // Do something in response to button
-		Intent intent = new Intent(this, MapInformationActivity.class);
+		Intent intent = new Intent(this, MultipleSummaryActivity.class);
+		//intent.putStringArrayListExtra(COUNTRIES_LIST, options);
+		//intent.putExtra(SHOW_ADVISORY, yesAdvisory);
+		intent.putExtra(SHOW_CONSULATE, yesConsolate);
 		startActivity(intent);
 	}
 	

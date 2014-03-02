@@ -22,6 +22,9 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+//** queries need to be finished. Marker needs to be show. Can use latitude/longitude or address. 
+// Text needs to be set for advisory/consolate text view in UI
+
 public class MapInformationActivity extends Activity {
 	
 	private GoogleMap map;

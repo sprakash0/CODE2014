@@ -17,6 +17,8 @@ import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
+//**Populated continents - uses getter to retrieve the country, still need to populate countries
+
 public class FindConsulateActivity extends Activity {
 	
 	// Continents

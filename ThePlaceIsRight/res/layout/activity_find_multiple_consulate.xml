@@ -53,6 +53,7 @@
         android:layout_alignLeft="@+id/checkBox_consulate"
         android:layout_below="@+id/checkBox_consulate"
         android:layout_marginTop="31dp"
-        android:text="Go" />
+        android:text="Go" 
+        android:onClick="go" />
 
 </RelativeLayout>
