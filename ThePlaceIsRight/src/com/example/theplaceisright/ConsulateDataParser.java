@@ -51,8 +51,12 @@ public class ConsulateDataParser {
 				JSONObject country = (JSONObject) node.get("country");
 				JSONObject eng = (JSONObject) country.get("eng");
 				
-				consulate.setCountry((String) eng.get("name"));
-				consulate.setCountryCode((String) country.get("country-iso"));
+				// Empty strings as key values treated as NULL (country, countryCode, office-id)
+				String name = !((String) eng.get("name")).equals("")? (String) eng.get("name") : "NULL"; 
+				consulate.setCountry(name);
+				
+				String code = !((String) country.get("country-iso")).equals("")? (String) country.get("country-iso") : "NULL";
+				consulate.setCountryCode(code);
 
 				JSONArray offices = (JSONArray) node.get("offices");
 				
