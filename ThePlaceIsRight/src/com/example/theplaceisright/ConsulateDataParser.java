@@ -45,7 +45,6 @@ public class ConsulateDataParser {
 
 			for (Object n : data.keySet()) {
 				
-				Consulate consulate = new Consulate(); 
 				
 				JSONObject node = (JSONObject) data.get(n);
 				JSONObject country = (JSONObject) node.get("country");
@@ -53,10 +52,8 @@ public class ConsulateDataParser {
 				
 				// Empty strings as key values treated as NULL (country, countryCode, office-id)
 				String name = !((String) eng.get("name")).equals("")? (String) eng.get("name") : "NULL"; 
-				consulate.setCountry(name);
 				
 				String code = !((String) country.get("country-iso")).equals("")? (String) country.get("country-iso") : "NULL";
-				consulate.setCountryCode(code);
 
 				JSONArray offices = (JSONArray) node.get("offices");
 				
@@ -64,6 +61,9 @@ public class ConsulateDataParser {
 					
 					JSONObject office = (JSONObject) offices.get(i);
 					
+					Consulate consulate = new Consulate(); 
+					consulate.setCountry(name);
+					consulate.setCountryCode(code);
 					consulate.setOfficeID(((Long) office.get("office-id")).intValue()); 	
 					
 					boolean isPrimary = ((Long) office.get("is-primary") != 0)? true : false; 
