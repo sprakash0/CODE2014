@@ -21,10 +21,12 @@ public class MultipleSummaryActivity extends Activity {
         ArrayList<String> countries_list = intent.getStringArrayListExtra(FindMultipleConsulateActivity.COUNTRIES_LIST);
         boolean showAdvisory = intent.getBooleanExtra(FindMultipleConsulateActivity.SHOW_ADVISORY, true);
         boolean showConsulate = intent.getBooleanExtra(FindMultipleConsulateActivity.SHOW_CONSULATE, true);
+        boolean showPassportOnly = intent.getBooleanExtra(FindMultipleConsulateActivity.SHOW_PASSPORT_ONLY, false);
         
         // Create the text view
         TextView textView = new TextView(this);
         if(countries_list != null) {
+        	CountryInfoFormatter cif = new CountryInfoFormatter();
         	for (int i=0; i<countries_list.size(); i++) {
         		// Get country_name from the list of selected countries
         		String country_name = countries_list.get(i);
@@ -32,18 +34,16 @@ public class MultipleSummaryActivity extends Activity {
         	
         		// If Advisory was checked, show advisory information
         		if (showAdvisory) {
-        			Advisory a = new Advisory();
-        			a.setCountry(country_name);
-        			String advisory = a.getText();
+        			String advisory = cif.getAdvisory(country_name);
         			textView.setText(textView.getText() + "Advisory: " + advisory +"\n");
         		}
         	
         		// If Consulate was checked, show consulate information
         		if (showConsulate) {
-        			Consulate c = new Consulate();
-        			c.setCountry(country_name);
-        			String consulate = c.getAddress();
-        			textView.setText(textView.getText() + "Consulate Location: " + consulate + "\n");
+        			ArrayList<String> consulateInfo = cif.getConsulateInfo(country_name, showPassportOnly);
+        			for (String info : consulateInfo) {
+        				textView.setText(textView.getText() + info + "\n");
+        			}
         		}		
         	}
         }
