@@ -12,10 +12,12 @@ public class ConsulateDataParser {
 
 	private String url = "http://data.international.gc.ca/travel-voyage/embassies-consulates-list.json";
 	
+	public void run(){
+		new ConsulateHTMLGetter().execute(url);
+	}
+	
 	// For testing purposes; can be removed later
-	public void test() {
-		ConsulateDataParser parser = new ConsulateDataParser();
-		ArrayList<Consulate> result = parser.readData("http://data.international.gc.ca/travel-voyage/embassies-consulates-list.json");
+	public static void print(ArrayList<Consulate> result) {
 		for (Consulate c : result) {
 			System.out.println("countryCode: " + c.getCountryCode());
 			System.out.println("country: " + c.getCountry());
@@ -32,7 +34,7 @@ public class ConsulateDataParser {
 		}
 	}	
 	
-	public ArrayList<Consulate> readData(String str) {
+	public static ArrayList<Consulate> readData(String str) {
 	
 			JSONObject jsonObject = (JSONObject) JSONValue.parse(str);
 

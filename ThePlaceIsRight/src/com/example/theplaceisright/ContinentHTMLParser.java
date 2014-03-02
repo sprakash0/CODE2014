@@ -34,7 +34,7 @@ public class ContinentHTMLParser {
 	}
 	
 	public void run(){
-		new HTMLGetter().execute(url);
+		new ContinentHTMLGetter().execute(url);
 	}
 	
 	public static ArrayList<ContinentCountry> parse(String str){

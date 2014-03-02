@@ -12,7 +12,7 @@ class AdvisoryDBHelper extends SQLiteOpenHelper {
     static final String KEY_COUNTRY = "Country";
     static final String VALUE_CODE = "Code";
     static final String VALUE_DATE = "Date";
-	static final String VALUE_TEXT = "Primary";
+	static final String VALUE_TEXT = "Text";
 
     private static final String DICTIONARY_TABLE_CREATE =
                 "CREATE TABLE " + DICTIONARY_TABLE_NAME + " (" +

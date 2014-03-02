@@ -12,7 +12,7 @@ class ConsulateDBHelper extends SQLiteOpenHelper {
     static final String KEY_COUNTRY = "Country";
     static final String KEY_OFFICE = "Office";
     static final String VALUE_CODE = "Code";
-	static final String VALUE_PRIMARY = "Primary";
+	static final String VALUE_PRIMARY = "IsPrimary";
 	static final String VALUE_PASSPORT = "Passport";
     static final String VALUE_CITY = "City";
     static final String VALUE_TYPE = "Type";
