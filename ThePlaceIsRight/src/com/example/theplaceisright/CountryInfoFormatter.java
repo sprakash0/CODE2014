@@ -10,10 +10,10 @@ public class CountryInfoFormatter {
 		
 		ArrayList<Consulate> consulates = new ArrayList<Consulate>();
 		
-		// Returns information for all consulates
+		// Return information for all consulates
 		if (!hasPassport) {
 			consulates = DatabaseManager.getConsulates(country);
-		// Returns information for consulates with passport services 
+		// Return information for consulates with passport services 
 		} else {
 			consulates = DatabaseManager.getPassportServices(country);
 		}
@@ -29,7 +29,7 @@ public class CountryInfoFormatter {
 		// Include: city, type, address, telephone, fax, email, isPrimary, hasPassport  
 		for (Consulate cons : consulates) {
 			String isPrimary = cons.getIsPrimary()? "Primary consulate \n" : "";
-			String hasPassport = cons.getHasPassport()? "Passport services" : "";
+			String hasPassport = cons.getHasPassport()? "Passport services \n" : "";
 			String consulateInfo = 	cons.getCity() + "\n"
 					+ cons.getType() + "\n"
 					+ cons.getAddress() + "\n"
