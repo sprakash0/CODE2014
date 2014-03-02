@@ -6,11 +6,24 @@ import com.google.android.gms.maps.model.LatLng;
 
 public class CountryInfoFormatter {
 	
-	public ArrayList<String> getConsulateInfo(String country) {
-
+	public ArrayList<String> getConsulateInfo(String country, boolean hasPassport) {
+		
+		ArrayList<Consulate> consulates = new ArrayList<Consulate>();
+		
+		// Returns information for all consulates
+		if (!hasPassport) {
+			consulates = DatabaseManager.getConsulates(country);
+		// Returns information for consulates with passport services 
+		} else {
+			consulates = DatabaseManager.getPassportServices(country);
+		}
+		
+		return getConsulateInfo(country, consulates);
+	}
+	
+	public ArrayList<String> getConsulateInfo(String country, ArrayList<Consulate> consulates) {
+	
 		ArrayList<String> info = new ArrayList<String>();
-
-		ArrayList<Consulate> consulates = DatabaseManager.getConsulates(country);
 
 		// TO DO: figure out if there is a particular order in which these should be displayed
 		// Include: city, type, address, telephone, fax, email, isPrimary, hasPassport  
@@ -31,6 +44,7 @@ public class CountryInfoFormatter {
 		return info;
 	}
 	
+	// Return a list of consulate coordinates for the given country
 	public ArrayList<LatLng> getAllCoordinates(String country) {
 		
 		ArrayList<LatLng> coordinates = new ArrayList<LatLng>();
