@@ -8,10 +8,15 @@ import android.view.View;
 
 public class SplashScreenActivity extends Activity {
 
+	private static DatabaseManager DBManager;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash_screen);
+
+		DBManager = new DatabaseManager(this);
+		DatabaseManager.initDatabases(this);
 	}
 
 	@Override

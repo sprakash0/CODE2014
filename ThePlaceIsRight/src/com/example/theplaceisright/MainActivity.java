@@ -39,7 +39,6 @@ public class MainActivity extends Activity implements
 	private LocationClient locationClient;
 	private Location location;
 
-	//private static DatabaseManager DBManager;
 
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	@Override
@@ -50,10 +49,6 @@ public class MainActivity extends Activity implements
 		// Get a handle to the Map Fragment
     	map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
     	locationClient = new LocationClient(this, this, this);
-        
-		//DBManager = new DatabaseManager(this);
-		//DatabaseManager.initDatabases(this);
-
 	}
 	
 //	@Override

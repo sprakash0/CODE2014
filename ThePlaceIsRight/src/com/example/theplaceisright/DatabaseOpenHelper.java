@@ -5,10 +5,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-class ConsulateDBHelper extends SQLiteOpenHelper {
+class DatabaseOpenHelper extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 2;
-    static final String DICTIONARY_TABLE_NAME = "consulate";
+    
+    static final String DATABASE_NAME = "infoDatabase";
+    
+    static final String TABLE_CONSULATE = "consulate";
     static final String KEY_COUNTRY = "Country";
     static final String KEY_OFFICE = "Office";
     static final String VALUE_CODE = "Code";
@@ -23,9 +26,11 @@ class ConsulateDBHelper extends SQLiteOpenHelper {
 	static final String VALUE_EMERG = "Emergency";
 	static final String VALUE_FAX = "Fax";
 	static final String VALUE_EMAIL = "Email";
+	
+	
 
-    private static final String DICTIONARY_TABLE_CREATE =
-                "CREATE TABLE " + DICTIONARY_TABLE_NAME + " (" +
+    private static final String DICTIONARY_CREATE_CONSUL =
+                "CREATE TABLE " + TABLE_CONSULATE + " (" +
                 KEY_COUNTRY + " TEXT NOT NULL," +
                 KEY_OFFICE + " INTEGER NOT NULL, " +
                 VALUE_CODE + " TEXT NOT NULL," +
@@ -42,28 +47,58 @@ class ConsulateDBHelper extends SQLiteOpenHelper {
                 VALUE_EMAIL + " TEXT," +
                 "PRIMARY KEY ("+ KEY_COUNTRY + ", " + KEY_OFFICE +")" +
                 ");";
+    
+    static final String TABLE_ADVISORY = "advisory";
+    static final String VALUE_DATE = "Date";
+	static final String VALUE_TEXT = "Text";
 
-    ConsulateDBHelper(Context context) {
-        super(context, DICTIONARY_TABLE_NAME, null, DATABASE_VERSION);
+    private static final String DICTIONARY_CREATE_ADVIS =
+                "CREATE TABLE " + TABLE_ADVISORY + " (" +
+                KEY_COUNTRY + " TEXT," +
+                VALUE_CODE + " TEXT," +
+                VALUE_DATE + " TEXT," +
+                VALUE_TEXT + " TEXT," +
+                "PRIMARY KEY ("+ KEY_COUNTRY + ")" +
+                ");";
+    
+    static final String TABLE_CONTINENT = "continent";
+    static final String KEY_COUNTRY2 = "Country2";
+    static final String VALUE_CONTINENT = "Continent";
+    static final String VALUE_COUNTRY3 = "Country3";
+
+    private static final String DICTIONARY_CREATE_CONTIN =
+                "CREATE TABLE " + TABLE_CONTINENT + " (" +
+                KEY_COUNTRY2 + " TEXT NOT NULL," +
+                VALUE_CONTINENT + " TEXT NOT NULL," +
+                VALUE_COUNTRY3 + " TEXT," +
+                "PRIMARY KEY ("+ KEY_COUNTRY2 + ")" +
+                ");";
+
+
+
+    DatabaseOpenHelper(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(DICTIONARY_TABLE_CREATE);
+        db.execSQL(DICTIONARY_CREATE_CONSUL);
+        db.execSQL(DICTIONARY_CREATE_CONTIN);
+        db.execSQL(DICTIONARY_CREATE_ADVIS);
     }
 
     @Override
     public void onOpen(SQLiteDatabase db) {
-        db.execSQL("DROP TABLE IF EXISTS " + DICTIONARY_TABLE_NAME);
+        //db.execSQL("DROP TABLE IF EXISTS " + DICTIONARY_TABLE_NAME);
     }
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		// TODO Auto-generated method stub
-	    Log.w(ConsulateDBHelper.class.getName(),
+	    Log.w(DatabaseOpenHelper.class.getName(),
 	            "Upgrading database from version " + oldVersion + " to "
 	                + newVersion + ", which will destroy all old data");
-	        db.execSQL("DROP TABLE IF EXISTS " + DICTIONARY_TABLE_NAME);
+	        db.execSQL("DROP TABLE IF EXISTS " + DATABASE_NAME);
 	        onCreate(db);
 	}
 }

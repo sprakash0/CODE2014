@@ -102,7 +102,7 @@ public class FindConsulateActivity extends Activity {
     }
 	
 	public static void addToDropDownCountry(ArrayList<String> itemList){
-		options.clear();
+		//options.clear();
 		for(String item : itemList ){
 			  options.add(item);
 			}
@@ -127,6 +127,19 @@ private void setContinentListener() {
 			continent = parent.getItemAtPosition(pos).toString();
 			//options.add(continent);
 			//dynamicColorSpinner.setAdapter(dataAdapter);
+			System.out.println(continent);
+			ArrayList<String> temp = DatabaseManager.getCountries(continent);
+			if (temp!= null)
+			{
+				System.out.println("printing countries");
+				for (String c: temp)
+					System.out.println(c);
+			}
+			else
+			{
+				System.out.println("Error! null list of countries");
+			}
+			addToDropDownCountry(temp);
 		}
 		@Override
 		public void onNothingSelected(AdapterView<?> arg0) {

@@ -74,7 +74,7 @@ public class ContinentHTMLParser {
 			
 		}		
 		
-		print(array);
+		//print(array);
 		
 		return array;
 	}
