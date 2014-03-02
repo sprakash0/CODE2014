@@ -23,7 +23,7 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-//** lattitude longitude of current location in onConnected. Displays current location
+//** latitude longitude of current location in onConnected. Displays current location
 
 public class MainActivity extends Activity implements
 	GooglePlayServicesClient.ConnectionCallbacks,
@@ -83,9 +83,11 @@ public class MainActivity extends Activity implements
  
         if(item.getItemId() == R.id.action_search){
         	Intent intent = new Intent(this, MapInformationActivity.class);
-        	intent.putExtra(LATITUDE, location.getLatitude());
-    		intent.putExtra(LONGITUDE, location.getLongitude());
-    		startActivity(intent);
+//        	Bundle extras = new Bundle();
+//        	extras.putDouble(LATITUDE, location.getLatitude());
+//    		extras.putDouble(LONGITUDE, location.getLongitude());
+//    		intent.putExtras(extras);
+        	startActivity(intent);
         }
         else if(item.getItemId() == R.id.change_locations){
         	Intent intent = new Intent(this, FindConsulateActivity.class);

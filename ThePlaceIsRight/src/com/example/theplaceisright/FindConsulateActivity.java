@@ -21,6 +21,8 @@ import android.widget.TextView;
 
 public class FindConsulateActivity extends Activity {
 	
+	public final static String COUNTRY = "com.example.theplaceisright.MESSAGE";
+	
 	// Continents
 	 private static Spinner dynamicColorSpinnerContinent;
 	 private TextView dynamicColorLabelContinent;
@@ -80,6 +82,7 @@ public class FindConsulateActivity extends Activity {
 	public void go(View view) {
 	    // Do something in response to button
 		Intent intent = new Intent(this, MapInformationActivity.class);
+		intent.putExtra(COUNTRY, country);
 		startActivity(intent);
 	}
 	

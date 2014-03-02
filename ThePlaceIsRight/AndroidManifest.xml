@@ -45,10 +45,10 @@
         <activity
             android:name="com.example.theplaceisright.MapInformationActivity"
             android:label="@string/title_activity_map_information" 
-            android:parentActivityName="com.example.theplaceisright.MainActivity" >
+            android:parentActivityName="com.example.theplaceisright.FindConsulateActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.theplaceisright.MainActivity" />
+                android:value="com.example.theplaceisright.FindConsulateActivity" />
         </activity>
 
         <meta-data

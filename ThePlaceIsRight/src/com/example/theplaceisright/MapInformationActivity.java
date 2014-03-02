@@ -45,14 +45,17 @@ public class MapInformationActivity extends Activity {
         	Intent intent = getIntent();
         	
         	//Get country from FindConsulateActivity
-        	String country = "Italy";
+        	String country = intent.getStringExtra(FindConsulateActivity.COUNTRY);
         	
         	//Use location from MainActivity to get current country
-        	double latitude = intent.getDoubleExtra(MainActivity.LATITUDE, 0);
-        	double longitude = intent.getDoubleExtra(MainActivity.LONGITUDE, 0);
-        	LatLng consulateLL = new LatLng(latitude, longitude);
+        	//Bundle extras = intent.getExtras();
+        	//double latitude = extras.getDouble(MainActivity.LATITUDE, 0);
+        	//double longitude = extras.getDouble(MainActivity.LONGITUDE, 0);
         	
-//        	Geocoder geoCoderCountry = new Geocoder(this);
+        	//LatLng currentLL = new LatLng(latitude, longitude);
+        	//map.addMarker(new MarkerOptions().position(currentLL));
+
+        	//Geocoder geoCoderCountry = new Geocoder(this);
 //        	List<Address> addresses = new ArrayList<Address>();
 //        	try {
 //        		addresses = geoCoderCountry.getFromLocation(latitude, longitude, 1);
@@ -62,8 +65,6 @@ public class MapInformationActivity extends Activity {
 //				// TODO Auto-generated catch block
 //				e.printStackTrace();
 //			}
-        	
-        	//map.addMarker(new MarkerOptions().position(consulateLL));
         	
         	// Set markers at consulate locations
         	// If latitude/longitude is valid, add marker to map
@@ -96,7 +97,7 @@ public class MapInformationActivity extends Activity {
         	
         	TextView consulateTextView = (TextView)findViewById(R.id.consulateTextView);
         	consulateTextView.setMovementMethod(new ScrollingMovementMethod());
-        	ArrayList<String> consulates = c.getConsulateInfo(country, true);
+        	ArrayList<String> consulates = c.getConsulateInfo(country, false);
         	for (String con : consulates) {
         		consulateTextView.setText(consulateTextView.getText() + con + "\n");
         	}
