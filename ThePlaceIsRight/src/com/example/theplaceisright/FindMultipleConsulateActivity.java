@@ -27,6 +27,7 @@ public class FindMultipleConsulateActivity extends Activity {
 	public final static String SHOW_ADVISORY = "com.example.theplaceisright.MESSAGE";
 	public final static String SHOW_CONSULATE = "com.example.theplaceisright.MESSAGE";
 	public final static String SHOW_PASSPORT_ONLY = "com.example.theplaceisright.MESSAGE";
+	//public final static  ArrayList<String> selectedCountriesList = "com.example.theplaceisright.MESSAGE";
 	
 		private CheckBox consolate, passport, advisory;
 		private boolean yesConsolate = false;
@@ -50,8 +51,7 @@ public class FindMultipleConsulateActivity extends Activity {
 		 private int prevIdx = -1;
 		 
 		 private TextView selectedCountries;
-		 
-		 private ArrayList<String> selectedCountriesList;
+		 ArrayList<String> selectedCountriesList;
 	
 	public String getCountry(){
 				
@@ -114,7 +114,7 @@ public class FindMultipleConsulateActivity extends Activity {
 	public void go(View view) {
 	    // Do something in response to button
 		Intent intent = new Intent(this, MultipleSummaryActivity.class);
-		intent.putStringArrayListExtra(COUNTRIES_LIST, optionsCountry);
+		intent.putStringArrayListExtra(COUNTRIES_LIST, selectedCountriesList);
 		intent.putExtra(SHOW_ADVISORY, yesAdvisory);
 		intent.putExtra(SHOW_CONSULATE, yesConsolate);
 		intent.putExtra(SHOW_PASSPORT_ONLY, yesPassport);
