@@ -22,16 +22,16 @@ import android.widget.TextView;
 public class FindConsulateActivity extends Activity {
 	
 	// Continents
-	 private static Spinner dynamicColorSpinner;
-	 private TextView dynamicColorLabel;
-	 private static ArrayList<String> options;
-	 static ArrayAdapter<String> dataAdapter;
+	 private static Spinner dynamicColorSpinnerContinent;
+	 private TextView dynamicColorLabelContinent;
+	 private static ArrayList<String> optionsContinent;
+	 static ArrayAdapter<String> dataAdapterContinent;
 	 
 	 //Countries
-	 private static Spinner dynamicColorSpinner2;
-	 private TextView dynamicColorLabel2;
-	 private static ArrayList<String> options2;
-	 static ArrayAdapter<String> dataAdapter2;
+	 private static Spinner dynamicColorSpinnerCountry;
+	 private TextView dynamicColorLabelCountry;
+	 private static ArrayList<String> optionsCountry;
+	 static ArrayAdapter<String> dataAdapterCountry;
 	 
 	 private String country;
 	 private String continent;
@@ -51,25 +51,25 @@ public class FindConsulateActivity extends Activity {
 		getMenuInflater().inflate(R.menu.find_consulate, menu);
 		
 		//Countries
-		options = new ArrayList<String>();
-		dynamicColorSpinner = (Spinner) findViewById(R.id.continent_spinner);
-		dynamicColorLabel = (TextView) findViewById(R.id.textView1);
-		options.add("Countries");
-		dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, options);
-		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		dynamicColorSpinner.setAdapter(dataAdapter);
+		optionsCountry = new ArrayList<String>();
+		dynamicColorSpinnerCountry = (Spinner) findViewById(R.id.continent_spinner);
+		dynamicColorLabelCountry = (TextView) findViewById(R.id.textView1);
+		optionsCountry.add("Countries");
+		dataAdapterCountry = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, optionsCountry);
+		dataAdapterCountry.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		dynamicColorSpinnerCountry.setAdapter(dataAdapterCountry);
 		
 		//Continents
-		options2 = new ArrayList<String>();
-		dynamicColorSpinner2 = (Spinner) findViewById(R.id.country_spinner);
-		dynamicColorLabel2 = (TextView) findViewById(R.id.textView2);
+		optionsContinent = new ArrayList<String>();
+		dynamicColorSpinnerContinent = (Spinner) findViewById(R.id.country_spinner);
+		dynamicColorLabelContinent = (TextView) findViewById(R.id.textView2);
 
 		// Add continents to drop down list
 		addToDropDownContinent(ContinentCountry.continentNames);
 		
-		dataAdapter2 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, options2);
-		dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		dynamicColorSpinner2.setAdapter(dataAdapter2);
+		dataAdapterContinent = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, optionsContinent);
+		dataAdapterContinent.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		dynamicColorSpinnerContinent.setAdapter(dataAdapterContinent);
 		
 		setContinentListener();
 		setCountryListener();
@@ -109,25 +109,25 @@ public class FindConsulateActivity extends Activity {
     }
 	
 	public static void addToDropDownCountry(ArrayList<String> itemList){
-		//options.clear();
+		optionsCountry.clear();
 		for(String item : itemList ){
-			  options.add(item);
+			  optionsCountry.add(item);
 			}
-		dynamicColorSpinner.setAdapter(dataAdapter2);
+		dynamicColorSpinnerCountry.setAdapter(dataAdapterCountry);
 
 	}
 	
 	public static void addToDropDownContinent(String[] itemList){
-		options2.clear();
+		optionsContinent.clear();
 		for(int i = 0; i < itemList.length; i++){
-			  options2.add(itemList[i]);
+			  optionsContinent.add(itemList[i]);
 			}
-		dynamicColorSpinner2.setAdapter(dataAdapter);
+		dynamicColorSpinnerContinent.setAdapter(dataAdapterContinent);
 	}
 
 private void setContinentListener() {
 	//Continent
-	dynamicColorSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+	dynamicColorSpinnerContinent.setOnItemSelectedListener(new OnItemSelectedListener() {
 		@Override
 		public void onItemSelected(AdapterView<?> parent, View view, int pos,
 				long id) {
@@ -163,7 +163,7 @@ private void setContinentListener() {
 
 private void setCountryListener() {
 	//Country
-	dynamicColorSpinner2.setOnItemSelectedListener(new OnItemSelectedListener() {
+	dynamicColorSpinnerCountry.setOnItemSelectedListener(new OnItemSelectedListener() {
 		@Override
 		public void onItemSelected(AdapterView<?> parent2, View view, int pos,
 				long id) {

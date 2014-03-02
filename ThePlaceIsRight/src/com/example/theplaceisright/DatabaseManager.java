@@ -313,7 +313,7 @@ public class DatabaseManager {
 		if (code == null) return countries;
 		String q = "SELECT * FROM " 
 				+ DatabaseOpenHelper.TABLE_CONTINENT +  " a "
-				+ " LEFT JOIN " 
+				+ " INNER JOIN " 
 				+ DatabaseOpenHelper.TABLE_CONSULATE +  " b "
 				+ " ON "
 				+ "a." + DatabaseOpenHelper.KEY_COUNTRY2 + " = "
