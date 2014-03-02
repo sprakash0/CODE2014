@@ -211,11 +211,11 @@ public class DatabaseManager {
 			
 			idx = c.getColumnIndex(DatabaseOpenHelper.VALUE_LAT);
 			if (idx >= 0)
-				curr.setLongitude(c.getFloat(idx));
+				curr.setLatitude(c.getFloat(idx));
 
 			idx = c.getColumnIndex(DatabaseOpenHelper.VALUE_LON);
 			if (idx >= 0)
-				curr.setLatitude(c.getFloat(idx));
+				curr.setLongitude(c.getFloat(idx));
 
 			
 			idx = c.getColumnIndex(DatabaseOpenHelper.VALUE_ADDRESS);
