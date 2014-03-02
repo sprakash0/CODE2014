@@ -2,6 +2,7 @@ package com.example.theplaceisright;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -338,6 +339,8 @@ public class DatabaseManager {
 			}
 		} while (c.moveToNext());
 		c.close();
+		
+		Collections.sort(countries);
 		
 		return countries;
 	}
