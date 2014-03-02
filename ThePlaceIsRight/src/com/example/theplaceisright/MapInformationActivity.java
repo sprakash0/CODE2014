@@ -1,8 +1,13 @@
 package com.example.theplaceisright;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import android.annotation.TargetApi;
 import android.app.Activity;
-
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
@@ -31,15 +36,30 @@ public class MapInformationActivity extends Activity {
         	map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
         	map.setMyLocationEnabled(true);
         	
-        	// Set marker at current location
-            //LatLng locationLL = new LatLng(location.getLatitude(), location.getLongitude());
-            //map.addMarker(new MarkerOptions().position(locationLL));
-        
         	// Set markers at consulate locations
-        	// set latitude and longitude of consulate
+        	
+        	// If latitude/longitude is valid, add marker to map
         	LatLng consulateLL = new LatLng(0, 0);
         	map.addMarker(new MarkerOptions().position(consulateLL));
-        
+        	
+        	
+        	// If latitude/longitude is not valid, use address to add marker to map
+        	String address = "7128 Kerr St, Vancouver, BC";
+        	Geocoder geoCoder = new Geocoder(this);
+        	List<Address> location = new ArrayList<Address>();
+        	try {
+        		location = geoCoder.getFromLocationName(address, 1);
+					
+        	} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        	
+        	if (location!=null) {
+        		LatLng consulateLLFromAddress = new LatLng(location.get(0).getLatitude(), location.get(0).getLongitude());
+        		map.addMarker(new MarkerOptions().position(consulateLLFromAddress));	
+        	}
+        	
         	// Text information
         	TextView advisoryTextView = (TextView)findViewById(R.id.advisoryTextView);
         	advisoryTextView.setText("show advisory");
