@@ -11,6 +11,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -42,22 +43,35 @@ public class MapInformationActivity extends Activity {
         	
         	// Get latitude, longitude from main activity
         	Intent intent = getIntent();
+        	
+        	//Get country from FindConsulateActivity
+        	String country = "Italy";
+        	
+        	//Use location from MainActivity to get current country
         	double latitude = intent.getDoubleExtra(MainActivity.LATITUDE, 0);
         	double longitude = intent.getDoubleExtra(MainActivity.LONGITUDE, 0);
         	LatLng consulateLL = new LatLng(latitude, longitude);
-
-        	map.addMarker(new MarkerOptions().position(consulateLL));
+        	
+//        	Geocoder geoCoderCountry = new Geocoder(this);
+//        	List<Address> addresses = new ArrayList<Address>();
+//        	try {
+//        		addresses = geoCoderCountry.getFromLocation(latitude, longitude, 1);
+//        		country = addresses.get(0).getCountryName();
+//					
+//        	} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+        	
+        	//map.addMarker(new MarkerOptions().position(consulateLL));
+        	
         	// Set markers at consulate locations
-        	
         	// If latitude/longitude is valid, add marker to map
-        	//ArrayList<Consulate> consulates = DatabaseManager.getConsulates("Canada");
-        	//for(Consulate consulate : consulates ){
-        	//	double consulateLatitude = consulate.getLatitude();
-        	//	double consulateLongitude = consulate.getLongitude();
-        	//	LatLng consulateLL = new LatLng(consulateLatitude, consulateLongitude);
-            //	map.addMarker(new MarkerOptions().position(consulateLL));
-  			//}
-        	
+        	CountryInfoFormatter c = new CountryInfoFormatter();
+        	ArrayList<LatLng> consulateLLs = c.getAllCoordinates(country);
+        	for(LatLng ll : consulateLLs ){
+            	map.addMarker(new MarkerOptions().position(ll));
+  			}
         	
         	// If latitude/longitude is not valid, use address to add marker to map
         	String address = "7128 Kerr St, Vancouver, BC";
@@ -78,11 +92,14 @@ public class MapInformationActivity extends Activity {
         	
         	// Text information
         	TextView advisoryTextView = (TextView)findViewById(R.id.advisoryTextView);
-        	advisoryTextView.setText("show advisory");
+        	advisoryTextView.setText(c.getAdvisory(country));
         	
         	TextView consulateTextView = (TextView)findViewById(R.id.consulateTextView);
-        	consulateTextView.setText("information about consulate");
-      
+        	consulateTextView.setMovementMethod(new ScrollingMovementMethod());
+        	ArrayList<String> consulates = c.getConsulateInfo(country, true);
+        	for (String con : consulates) {
+        		consulateTextView.setText(consulateTextView.getText() + con + "\n");
+        	}
         }
     }
 

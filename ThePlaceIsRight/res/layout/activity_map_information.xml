@@ -19,18 +19,17 @@
     <TextView
         android:id="@+id/advisoryTextView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_height="wrap_content" />
     
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:scrollbars = "vertical"
         android:hint="@string/consulate" />
 
     <TextView
         android:id="@+id/consulateTextView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
