@@ -39,3 +39,7 @@ ThePlaceIsRight/project.properties
 ThePlaceIsRight/.classpath
 
 ThePlaceIsRight/.classpath
+
+google-play-services_lib/bin/google-play-services_lib.jar
+
+*.jar
