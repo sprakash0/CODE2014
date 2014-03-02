@@ -157,7 +157,7 @@ public class DatabaseManager {
 	// Returns a list of consulates that provide passport services in the given country
 	public static ArrayList<Consulate> getPassportServices(String country) {
 		ArrayList<Consulate> cons = new ArrayList<Consulate>();
-		if (!checkInit(false)) return cons;
+		if (!checkInit(false) || country == null) return cons;
 		Cursor c = database.rawQuery("SELECT * FROM " 
 				+ DatabaseOpenHelper.TABLE_CONSULATE 
 				+ " WHERE UPPER(" + DatabaseOpenHelper.KEY_COUNTRY 
@@ -169,7 +169,7 @@ public class DatabaseManager {
 	
 	public static ArrayList<Consulate> getConsulates(String country) {
 		ArrayList<Consulate> cons = new ArrayList<Consulate>();
-		if (!checkInit(false)) return cons;
+		if (!checkInit(false) || country == null) return cons;
 		Cursor c = database.rawQuery("SELECT * FROM " 
 				+ DatabaseOpenHelper.TABLE_CONSULATE 
 				+ " WHERE UPPER(" + DatabaseOpenHelper.KEY_COUNTRY 
@@ -267,7 +267,7 @@ public class DatabaseManager {
 	
 
 	public static Advisory getAdvisory(String country) {
-		if (!checkInit(false)) return null;
+		if (!checkInit(false) || country == null) return null;
 		Cursor c = database.rawQuery("SELECT * FROM " 
 				+ DatabaseOpenHelper.TABLE_ADVISORY 
 				+ " WHERE UPPER(" + DatabaseOpenHelper.KEY_COUNTRY 
@@ -313,7 +313,7 @@ public class DatabaseManager {
 		if (!checkInit(false)) return countries;
 		String code = ContinentCountry.continentNameToCode(continentName.trim());
 		if (code == null) return countries;
-		String q = "SELECT * FROM " 
+		String q = "SELECT DISTINCT b." + DatabaseOpenHelper.KEY_COUNTRY + " FROM " 
 				+ DatabaseOpenHelper.TABLE_CONTINENT +  " a "
 				+ " INNER JOIN " 
 				+ DatabaseOpenHelper.TABLE_CONSULATE +  " b "
