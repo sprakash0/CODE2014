@@ -52,9 +52,18 @@
 
         <uses-library android:name="com.google.android.maps" />
 
-        <activity android:theme="@style/Theme.AppCompat.Light"
+        <activity
             android:name="com.example.theplaceisright.CountryQuery"
-            android:label="@string/title_activity_country_query" >
+            android:label="@string/title_activity_country_query"
+            android:theme="@style/Theme.AppCompat.Light" >
+        </activity>
+        <activity
+            android:name="com.example.theplaceisright.ConsulateQuery"
+            android:label="@string/title_activity_consulate_query" >
+        </activity>
+        <activity
+            android:name="com.example.theplaceisright.FindConsulateActivity"
+            android:label="@string/title_activity_find_consulate" >
         </activity>
     </application>
 

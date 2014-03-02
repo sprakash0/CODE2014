@@ -7,7 +7,11 @@
     <string name="title_activity_map_information">MapInformationActivity</string>
     <string name="button_search">Search</string>
     <string name="title_activity_country_query">Find Nearest</string>
-     <string name="button_changelocation">Change Location</string>
+    <string name="button_changelocation">Change Location</string>
     <string name="hello_world">Hello world!</string>
+    <string name="action_search">Item</string>
+    <string name="change_location">Item2</string>
+    <string name="title_activity_consulate_query">ConsulateQuery</string>
+    <string name="title_activity_find_consulate">FindConsulateActivity</string>
 
 </resources>
